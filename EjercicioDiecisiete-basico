@@ -1,0 +1,44 @@
+/*
+ * 17) Crear un programa que resuelva cualquier ecuación de segundo grado ax^2-bx = c. Por 
+tanto, se debe pedir al usuario que introduzca los valores a, b y c, y el programa 
+indicará las posibles raíces solución.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDiecisiete {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese los coeficientes a, b y c de la ecuación ax^2 - bx = c:");
+        System.out.print("a: ");
+        double a = scanner.nextDouble();
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+        System.out.print("c: ");
+        double c = scanner.nextDouble();
+
+        double discriminante = b * b - 4 * a * c;
+
+        if (discriminante > 0) {
+            double raiz1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+            double raiz2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+            System.out.println("Las raíces son reales y distintas:");
+            System.out.println("x1 = " + raiz1);
+            System.out.println("x2 = " + raiz2);
+        } else if (discriminante == 0) {
+            double raiz = -b / (2 * a);
+            System.out.println("La ecuación tiene una única raíz real:");
+            System.out.println("x = " + raiz);
+        } else {
+            System.out.println("Las raíces son complejas:");
+            double parteReal = -b / (2 * a);
+            double parteImaginaria = Math.sqrt(-discriminante) / (2 * a);
+            System.out.println("x1 = " + parteReal + " + " + parteImaginaria + "i");
+            System.out.println("x2 = " + parteReal + " - " + parteImaginaria + "i");
+        }
+
+        scanner.close();
+    }
+}
