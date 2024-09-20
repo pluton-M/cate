@@ -1,0 +1,24 @@
+/*
+ * 6) Si la población actual fuera 7309784505 y el crecimiento poblacional por año fuera 
+24807909, realice un programa que estipule la población mundial luego de uno, dos, 
+tres, cuatro y cinco años.
+ */
+package ejericicios;
+
+public class EjercicioSeis {
+    public static void main(String[] args) {
+        long poblacionInicial = 7309784505L; // Población inicial
+        long tasaCrecimientoAnual = 24807909L; // Tasa de crecimiento poblacional por año
+
+        // Calcular la población mundial luego de 1, 2, 3, 4 y 5 años
+        for (int i = 1; i <= 5; i++) {
+            long poblacionFutura = calcularPoblacionFutura(poblacionInicial, tasaCrecimientoAnual, i);
+            System.out.println("Población mundial después de " + i + " años: " + poblacionFutura);
+        }
+    }
+
+    // Método para calcular la población futura después de ciertos años
+    public static long calcularPoblacionFutura(long poblacionInicial, long tasaCrecimientoAnual, int anios) {
+        return poblacionInicial + (tasaCrecimientoAnual * anios);
+    }
+}
