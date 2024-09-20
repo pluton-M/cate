@@ -1,0 +1,21 @@
+/*
+ * 18) Crear un programa que pida al usuario un número entero y lo convierta a binario. 
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDieciocho {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Introduce un número entero: ");
+        int numero = scanner.nextInt();
+        
+        String binario = Integer.toBinaryString(numero);
+        
+        System.out.println("El número " + numero + " en binario es: " + binario);
+        
+        scanner.close();
+    }
+}
