@@ -1,0 +1,32 @@
+/*
+ * 2) Crear un programa que pida al usuario un número entero de 5 dígitos, y que muestre 
+por consola el resultado de la suma de todos sus dígitos. En el caso de que se ingrese 
+un número de más dígitos o de menos dígitos informar el error y volver a pedir el 
+número.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDos {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa un número de 5 dígitos: ");
+        int numero = scanner.nextInt();
+
+        if (numero < 10000 || numero > 99999) {
+            System.out.println("Error: El número debe tener 5 dígitos.");
+        } else {
+            int suma = 0;
+            while (numero > 0) {
+                suma += numero % 10;
+                numero /= 10;
+            }
+            System.out.println("La suma de los dígitos es: " + suma);
+        }
+
+        scanner.close();
+    }
+}
