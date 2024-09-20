@@ -1,0 +1,26 @@
+/*
+ * 8) Crear un programa que reciba del usuario el radio de un círculo como un entero, y que 
+imprima el diámetro, la circunferencia y el área del círculo mediante el uso del valor de 
+punto flotante 3.14159 para π, en donde diámetro = 2r, circunferencia = 2 πr y  
+área = πr^2. 
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioOcho {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el radio de un círculo: ");
+        int radio = scanner.nextInt();
+        scanner.close();
+
+        double diametro = 2 * radio;
+        double circunferencia = 2 * Math.PI * radio;
+        double area = Math.PI * Math.pow(radio, 2);
+
+        System.out.println("Diámetro: " + diametro);
+        System.out.println("Circunferencia: " + circunferencia);
+        System.out.println("Área: " + area);
+    }
+}
