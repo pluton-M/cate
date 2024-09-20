@@ -1,0 +1,39 @@
+/*
+ * 7) Crear un programa que pida al usuario ingresar un valor en pesos, e informe la cantidad mínima de billetes y monedas 
+ * necesarias para la cantidad ingresada.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioSiete {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese un valor en pesos: ");
+        int pesos = scanner.nextInt();
+        scanner.close();
+
+        int[] billetes = {2000, 1000, 500, 200, 100, 50, 20};
+        int[] monedas = {10, 5, 2, 1};
+
+        System.out.println("Billetes y monedas necesarias:");
+
+        for (int i = 0; i < billetes.length; ++i) {
+            if (pesos >= billetes[i]) {
+                System.out.println(billetes[i] + " pesos: " + pesos / billetes[i]);
+                pesos %= billetes[i];
+            }
+        }
+
+        for (int i = 0; i < monedas.length; ++i) {
+            if (pesos >= monedas[i]) {
+                System.out.println(monedas[i] + " pesos: " + pesos / monedas[i]);
+                pesos %= monedas[i];
+            }
+        }
+
+        if (pesos > 0) {
+            System.out.println("Resto: " + pesos);
+        }
+    }
+}
