@@ -1,0 +1,20 @@
+/*
+ * 5) Crear un programa que escriba los primeros 20 números de la sucesión de Fibonacci 
+sabiendo que x1 = 1, x2 = 1 y xn = xn – 1 + xn – 2 para n > 2. 
+ */
+package ejericicios;
+
+public class EjercicioCinco {
+    public static void main(String[] args) {
+        
+    	int n1 = 1, n2 = 1, n3, i;
+        System.out.print(n1 + " " + n2 + " "); // Imprime los dos primeros números
+
+        for (i = 2; i < 20; ++i) {
+            n3 = n1 + n2;
+            System.out.print(n3 + " ");
+            n1 = n2;
+            n2 = n3;
+        }
+    }
+}
