@@ -1,0 +1,30 @@
+/*
+ * 15) Crear un programa que lea un número entero n mayor a cero que identifica una 
+cantidad de segundos, y calcule e imprima el número de horas, minutos y segundos 
+contenidos en ella. Ejemplo: Para n = 15723 se debe imprimir 4 horas, 22 minutos y 3 
+segundos. 
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioQuince {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la cantidad de segundos: ");
+        int segundosTotal = scanner.nextInt();
+
+        if (segundosTotal > 0) {
+            int horas = segundosTotal / 3600;
+            int minutos = (segundosTotal % 3600) / 60;
+            int segundos = segundosTotal % 60;
+
+            System.out.println("El tiempo total es: " + horas + " horas, " + minutos + " minutos y " + segundos + " segundos.");
+        } else {
+            System.out.println("Por favor, ingrese un número entero mayor a cero.");
+        }
+
+        scanner.close();
+    }
+}
