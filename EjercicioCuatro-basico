@@ -1,0 +1,17 @@
+/*
+ * 4) Crear un programa que muestre por consola los caracteres ASCII que se encuentran 
+entre los valores 30 y 126 inclusive. Los caracteres se deben mostrar en 7 filas de 15 
+columnas.
+ */
+package ejericicios;
+
+public class EjercicioCuatro {
+	public static void main(String[] args) {
+        for (int i = 30; i <= 126; i++) {
+            System.out.print((char) i + " ");
+            if ((i - 29) % 15 == 0) {
+                System.out.println(); // Nueva línea después de 15 caracteres
+            }
+        }
+    }
+}
