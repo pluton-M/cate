@@ -1,0 +1,41 @@
+/*
+ * 20) Crear un programa en donde se ingrese la variedad de artículos vendidos y luego de 
+eso, se ingrese la cantidad de artículos por cada ocurrencia, y el precio del artículo. 
+Mostrar por consola a modo de factura, Nro de artículo, cantidad, precio unitario, y al 
+final de la misma, total a pagar.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioVeinte {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Introduce la cantidad de variedades de artículos vendidos: ");
+        int numeroDeArticulos = scanner.nextInt();
+        
+        int[] cantidades = new int[numeroDeArticulos];
+        double[] precios = new double[numeroDeArticulos];
+        
+        for (int i = 0; i < numeroDeArticulos; i++) {
+            System.out.print("Introduce la cantidad del artículo " + (i + 1) + ": ");
+            cantidades[i] = scanner.nextInt();
+            System.out.print("Introduce el precio unitario del artículo " + (i + 1) + ": ");
+            precios[i] = scanner.nextDouble();
+        }
+        
+        System.out.println("\nFactura:");
+        double totalAPagar = 0;
+        
+        for (int i = 0; i < numeroDeArticulos; i++) {
+            double totalArticulo = cantidades[i] * precios[i];
+            totalAPagar += totalArticulo;
+            System.out.println("Artículo " + (i + 1) + ": Cantidad = " + cantidades[i] + ", Precio Unitario = " + precios[i] + ", Total = " + totalArticulo);
+        }
+        
+        System.out.println("Total a pagar: " + totalAPagar);
+        
+        scanner.close();
+    }
+}
