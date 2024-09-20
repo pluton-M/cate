@@ -1,0 +1,43 @@
+/*
+ * 13) Crear un programa para determinar e informar si un número entero es capicúa 
+ * (número que se escribe igual al derecho y al revés). No utilice cadenas. 
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioTrece {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese un número entero para verificar si es capicúa: ");
+        int numero = scanner.nextInt();
+
+        if (esCapicua(numero)) {
+            System.out.println(numero + " es un número capicúa.");
+        } else {
+            System.out.println(numero + " no es un número capicúa.");
+        }
+
+        scanner.close();
+    }
+
+    // Método para verificar si un número entero es capicúa
+    public static boolean esCapicua(int numero) {
+        int numeroInvertido = invertirNumero(numero);
+        return numero == numeroInvertido;
+    }
+
+    // Método para invertir un número entero
+    public static int invertirNumero(int numero) {
+        int numeroInvertido = 0;
+
+        while (numero != 0) {
+            int digito = numero % 10;
+            numeroInvertido = numeroInvertido * 10 + digito;
+            numero /= 10;
+        }
+
+        return numeroInvertido;
+    }
+}
