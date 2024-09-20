@@ -1,0 +1,32 @@
+/*
+ * 12) Crear un programa que determine e informe si un año es bisiesto. Un año es bisiesto si 
+es múltiplo de 4, excepto los múltiplos de 100 que no son bisiestos, salvo que a su vez 
+también sean múltiplos de 400. (1800 no es bisiesto, 2000 si). 
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDoce {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese un año para verificar si es bisiesto: ");
+        int anio = scanner.nextInt();
+
+        if (esBisiesto(anio)) {
+            System.out.println(anio + " es un año bisiesto.");
+        } else {
+            System.out.println(anio + " no es un año bisiesto.");
+        }
+
+        scanner.close();
+    }
+
+    // Método para verificar si un año es bisiesto
+    public static boolean esBisiesto(int anio) {
+        // Un año es bisiesto si es múltiplo de 4, excepto los múltiplos de 100 que no son bisiestos,
+        // salvo que a su vez también sean múltiplos de 400
+        return (anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0));
+    }
+}
