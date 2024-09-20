@@ -1,0 +1,45 @@
+/*
+ * 16) Crear un programa que dada una hora en formato hh:mm:ss determine e informe cual 
+será el tiempo dentro de n segundos. La cantidad de segundos debe ser indicada por el 
+usuario.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDieciseis {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la hora en formato 'hh:mm:ss': ");
+        String horaActual = scanner.nextLine();
+
+        System.out.print("Ingrese la cantidad de segundos a agregar: ");
+        int segundos = scanner.nextInt();
+
+        String nuevoTiempo = calcularTiempoDespuesNsegundos(horaActual, segundos);
+
+        System.out.println("El tiempo después de " + segundos + " segundos será: " + nuevoTiempo);
+
+        scanner.close();
+    }
+
+    // Método para calcular el tiempo después de n segundos
+    public static String calcularTiempoDespuesNsegundos(String horaActual, int segundos) {
+        String[] partesHora = horaActual.split(":");
+        int horas = Integer.parseInt(partesHora[0]);
+        int minutos = Integer.parseInt(partesHora[1]);
+        int segundosTotales = Integer.parseInt(partesHora[2]);
+
+        segundosTotales += segundos;
+
+        minutos += segundosTotales / 60;
+        segundosTotales %= 60;
+
+        horas += minutos / 60;
+        minutos %= 60;
+        horas %= 24;
+
+        return String.format("%02d:%02d:%02d", horas, minutos, segundosTotales);
+    }
+}
