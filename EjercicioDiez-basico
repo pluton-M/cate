@@ -1,0 +1,43 @@
+/*
+ * 10) Crear un programa en el que se ingrese el valor de un préstamo a obtener, el 
+porcentaje de interés anual de ese préstamo y el valor que desea abonar por mes. 
+Mediante esos datos calcule e informe cuanto tiempo en años y en meses, se tardará 
+en pagar el préstamo.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioDiez {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el valor del préstamo: ");
+        double prestamo = scanner.nextDouble();
+
+        System.out.print("Ingrese el porcentaje de interés anual: ");
+        double interesAnual = scanner.nextDouble() / 100;
+
+        System.out.print("Ingrese el valor que desea abonar por mes: ");
+        double abonoMensual = scanner.nextDouble();
+
+        scanner.close();
+
+        int meses = 0;
+
+        while (prestamo > 0) {
+            double interesMensual = prestamo * interesAnual / 12;
+            prestamo += interesMensual;
+            if (prestamo < abonoMensual) {
+                abonoMensual = prestamo;
+            }
+            prestamo -= abonoMensual;
+            meses++;
+        }
+
+        int anos = meses / 12;
+        meses %= 12;
+
+        System.out.println("Se tardará " + anos + " años y " + meses + " meses en pagar el préstamo.");
+    }
+}
