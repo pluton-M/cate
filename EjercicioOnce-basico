@@ -1,0 +1,28 @@
+/*
+ * 11) Crear un programa que determine e informe el monto a pagar  por una llamada 
+telefónica, teniendo en cuenta lo siguiente: Toda llamada que dure hasta 5 minutos 
+tiene un costo de 5 pesos. Por cada minuto adicional se cobrará 50 centavos. Se debe 
+leer el tiempo de la llamada.
+ */
+package ejericicios;
+
+import java.util.Scanner;
+
+public class EjercicioOnce {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la duración de la llamada en minutos: ");
+        int duracion = scanner.nextInt();
+
+        scanner.close();
+
+        double costo = 5;
+
+        if (duracion > 5) {
+            costo += (duracion - 5) * 0.5;
+        }
+
+        System.out.println("El costo de la llamada es: $" + costo);
+    }
+}
