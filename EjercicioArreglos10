@@ -1,0 +1,33 @@
+/*
+ * 10) Crear un programa que informe el número de vocales de una cadena introducida por el usuario.
+ */
+package ejercicios;
+
+import java.util.Scanner;
+
+public class Arreglo10 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar una cadena al usuario
+        System.out.print("Ingrese una cadena de texto: ");
+        String cadena = scanner.nextLine();
+
+        // Contar el número de vocales en la cadena
+        int numVocales = contarVocales(cadena);
+
+        System.out.println("El número de vocales en la cadena es: " + numVocales);
+    }
+
+    // Función para contar el número de vocales en una cadena
+    public static int contarVocales(String cadena) {
+        int contador = 0;
+        String vocales = "aeiouAEIOU";
+        for (char c : cadena.toCharArray()) {
+            if (vocales.indexOf(c) != -1) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+}
