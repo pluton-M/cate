@@ -1,0 +1,26 @@
+/*
+ * 7) Crear un programa que solicite cinco números, los almacene en un arreglo y luego calcule el promedio de esos números 
+ * informando el resultado.
+ */
+package ejercicios;
+
+import java.util.Scanner;
+
+public class Arreglo7 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeros = new int[5];
+        int suma = 0;
+
+        // Solicitar cinco números y almacenarlos en el arreglo
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Ingrese el número " + (i + 1) + ": ");
+            numeros[i] = scanner.nextInt();
+            suma += numeros[i];
+        }
+
+        double promedio = (double) suma / numeros.length;// Calcular el promedio
+
+        System.out.println("El promedio de los números ingresados es: " + promedio);
+    }
+}
