@@ -1,0 +1,37 @@
+/*
+ * 9) Crear un programa que almacene en un arreglo los números primos comprendidos entre 1 y 100, y luego los muestre por consola 
+ * indicando los índices correspondientes a cada valor. 
+ */
+package ejercicios;
+
+public class Arreglo9 {
+    public static void main(String[] args) {
+        int[] primos = new int[25];
+        int indice = 0;
+
+        // Encontrar los números primos entre 1 y 100
+        for (int i = 2; i <= 100; i++) {
+            if (esPrimo(i)) {
+                primos[indice++] = i;
+            }
+        }
+
+        System.out.println("Números primos entre 1 y 100:");
+        for (int i = 0; i < indice; i++) {
+            System.out.println("Índice " + i + ": " + primos[i]);
+        }
+    }
+
+    // Función para determinar si un número es primo
+    public static boolean esPrimo(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
