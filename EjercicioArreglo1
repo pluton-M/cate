@@ -1,0 +1,38 @@
+/*
+ * 1) Crear un programa que pida 10 números enteros al usuario, los guarde en un vector, y finalmente muestre los datos del 
+ * vector indicando los índices correspondientes a cada valor.
+ */
+package ejercicios;
+
+import java.util.Scanner;
+
+public class Prim {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Para crear un vector para almacenar los números enteros
+        int[] numeros = new int[10];
+
+        System.out.print("Ingrese 10 números separados por espacios o comas: ");
+        String entrada = scanner.nextLine();
+
+        // Dividir la cadena de entrada en partes usando espacios o comas como separadores
+        String[] partes = entrada.split("[ ,]+");
+
+        // Esto es para verificar que se hayan ingresado exactamente 10 números
+        if (partes.length != 10) {
+            System.out.println("Error: Debe ingresar exactamente 10 números.");
+            return;
+        }
+
+        // Convertir las partes a enteros y guardarlas en el vector
+        for (int i = 0; i < 10; i++) {
+            numeros[i] = Integer.parseInt(partes[i]);
+        }
+
+        System.out.println("Datos del vector:");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println("Número en la posición " + i + ": " + numeros[i]);
+        }
+    }
+}
