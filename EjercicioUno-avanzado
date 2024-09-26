@@ -1,0 +1,109 @@
+/*
+ * 1) Realizar un programa para resolver el siguiente problema: Un granjero, un lobo, una gallina y un saco de maíz deben 
+ * cruzar el río. Para ello se dispone de un bote con una capacidad de dos ocupantes, el hombre (el único que sabe remar) y 
+ * otro. Si de un lado del rio se quedan solos el lobo y la gallina, el lobo se come a la gallina. Si en una orilla se quedan 
+ * solos la gallina y el maíz, la gallina se come al maíz.
+ */
+package ejercicios;
+
+import java.util.*;
+
+public class EjercicioUno {
+    // Definir los estados posibles del problema
+    static final int GRANJERO = 0;
+    static final int LOBO = 1;
+    static final int GALLINA = 2;
+    static final int MAIZ = 3;
+
+    // Definir el estado inicial y el estado objetivo
+    static final int[] ESTADO_INICIAL = {1, 1, 1, 1}; // Todos al lado izquierdo del río
+    static final int[] ESTADO_OBJETIVO = {0, 0, 0, 0}; // Todos al lado derecho del río
+
+    // Método para verificar si un estado es válido
+    static boolean esValido(int[] estado) {
+        // Verificar que la gallina y el maíz no estén juntos
+        if (estado[GALLINA] == estado[MAIZ] && estado[GALLINA] != estado[GRANJERO]) {
+            return false;
+        }
+        // Verificar que el lobo y la gallina no estén juntos
+        if (estado[LOBO] == estado[GALLINA] && estado[LOBO] != estado[GRANJERO]) {
+            return false;
+        }
+        return true;
+    }
+
+    // Método para verificar si un estado es el estado objetivo
+    static boolean esEstadoObjetivo(int[] estado) {
+        return Arrays.equals(estado, ESTADO_OBJETIVO);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] estadoActual = ESTADO_INICIAL.clone();
+
+        System.out.println("¡Bienvenido al juego de cruzar el rio!");
+
+        while (!esEstadoObjetivo(estadoActual)) {
+            // Mostrar el estado actual del juego
+            System.out.println("ESTADO ACTUAL");
+            mostrarEstado(estadoActual);
+
+            // Pedir al usuario que seleccione a qué llevar al otro lado del río
+            System.out.println("¿Qué deseas llevar al otro lado del río?");
+            System.out.println("1. El granjero solo");
+            System.out.println("2. El granjero con el lobo");
+            System.out.println("3. El granjero con la gallina");
+            System.out.println("4. El granjero con el maíz");
+            int opcion = scanner.nextInt();
+
+            // Actualizar el estado según la elección del usuario
+            switch (opcion) {
+                case 1:
+                    estadoActual[GRANJERO] = 1 - estadoActual[GRANJERO];
+                    break;
+                case 2:
+                    estadoActual[GRANJERO] = 1 - estadoActual[GRANJERO];
+                    estadoActual[LOBO] = 1 - estadoActual[LOBO];
+                    break;
+                case 3:
+                    estadoActual[GRANJERO] = 1 - estadoActual[GRANJERO];
+                    estadoActual[GALLINA] = 1 - estadoActual[GALLINA];
+                    break;
+                case 4:
+                    estadoActual[GRANJERO] = 1 - estadoActual[GRANJERO];
+                    estadoActual[MAIZ] = 1 - estadoActual[MAIZ];
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor selecciona una opción válida.");
+                    break;
+            }
+
+            // Verificar si se perdió el juego
+            if (!esValido(estadoActual)) {
+                System.out.println("¡Perdiste! El lobo se comió a la gallina o la gallina se comió el maíz.");
+                return;
+            }
+        }
+
+        // Si se llega a este punto, el usuario ha ganado
+        System.out.println("¡Ganaste! Lograste llevar a todos al otro lado del río.");
+    }
+
+    // Método para mostrar el estado actual del juego
+    static void mostrarEstado(int[] estado) {
+        System.out.println("Granjero: " + (estado[GRANJERO] == 1 ? "Izquierda" : "Derecha"));
+        System.out.println("Lobo: " + (estado[LOBO] == 1 ? "Izquierda" : "Derecha"));
+        System.out.println("Gallina: " + (estado[GALLINA] == 1 ? "Izquierda" : "Derecha"));
+        System.out.println("Maíz: " + (estado[MAIZ] == 1 ? "Izquierda" : "Derecha"));
+    }
+}
+/* Para ganar:
+ * granjero y gallina a la derecha
+ * granjero a la izquierda
+ * granjero y maiz a la derecha
+ * granjero y gallina a la izquierda
+ * granjero y lobo a la derecha
+ * granjero a la izquierda
+ * granjero y gallina a la derecha
+ */
