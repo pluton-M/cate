@@ -1,0 +1,76 @@
+/*
+ * 4) Realizar una calculadora en la cual se deberá ingresar una expresión, se analizará si la expresión ingresada es válida y 
+ * se resuelva dicha expresión. Las operaciones de la calculadora son: Suma, resta, multiplicación, división, potenciación y 
+ * radicación.
+ */
+package ejercicios;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class EjercicioCuatro {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Ingrese una expresión: ");
+            String input = scanner.nextLine();
+
+            try {
+                double result = evaluateExpression(input);
+                System.out.println("El resultado es: " + result);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+
+            System.out.println("¿Desea realizar otra operación? (s/n)");
+            String continuar = scanner.nextLine();
+            if (!continuar.equalsIgnoreCase("s")) {
+                break;
+            }
+        }
+        scanner.close();
+    }
+
+    private static double evaluateExpression(String input) throws Exception {
+        Pattern pattern = Pattern.compile("(-?\\d+(?:\\.\\d+)?)([+\\-*/:^])(-?\\d+(?:\\.\\d+)?)|(r)(-?\\d+(?:\\.\\d+)?)");
+        Matcher matcher = pattern.matcher(input);
+
+        if (!matcher.matches()) {
+            throw new Exception("Expresión inválida. Por favor, use el formato: 'número operador número' o 'r número'");
+        }
+
+        if (matcher.group(4) != null) { // Si es una expresión de raíz cuadrada
+            double operand = Double.parseDouble(matcher.group(5));
+            if (operand < 0) {
+                throw new Exception("La raíz cuadrada de un número negativo no es un número real.");
+            }
+            return Math.sqrt(operand);
+        } else { // Si es una expresión de operación matemática estándar
+            double operand1 = Double.parseDouble(matcher.group(1));
+            double operand2 = Double.parseDouble(matcher.group(3));
+            char operador = matcher.group(2).charAt(0);
+
+            switch (operador) {
+                case '+':
+                    return operand1 + operand2;
+                case '-':
+                    return operand1 - operand2;
+                case '*':
+                case 'x':
+                    return operand1 * operand2;
+                case '/':
+                case ':':
+                    if (operand2 == 0) {
+                        throw new Exception("La división entre cero no está permitida.");
+                    }
+                    return operand1 / operand2;
+                case '^':
+                    return Math.pow(operand1, operand2);
+                default:
+                    throw new Exception("Operador inválido. Por favor, use uno de los siguientes: +, -, *, /, ^, r");
+            }
+        }
+    }
+}
