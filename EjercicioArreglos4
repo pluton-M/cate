@@ -1,0 +1,22 @@
+/*
+ * 4) Crear un programa que llene un arreglo con los números comprendidos entre 0 y 100 divisibles por 3 y luego los muestre por 
+ * consola indicando los índices correspondientes a cada valor. 
+ */
+package ejercicios;
+
+public class Cuar {
+    public static void main(String[] args) {
+        int[] numeros = new int[34];  // Hay 34 números divisibles por 3 entre 0 y 100
+
+        // Llenar el arreglo con los números entre 0 y 100 divisibles por 3
+        for (int i = 0, num = 0; i < numeros.length; i++, num += 3) {
+            numeros[i] = num;
+        }
+
+        // Mostrar el arreglo con los índices correspondientes
+        System.out.println("Arreglo con números divisibles por 3 entre 0 y 100:");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println("Índice " + i + ": " + numeros[i]);
+        }
+    }
+}
