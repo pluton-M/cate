@@ -1,0 +1,69 @@
+/*
+ * 2) Realizar un programa para resolver el siguiente problema: Clara, Luisa, María y Nélida son cuatro mujeres que aman sus 
+ * trabajos. Ellas trabajan como diseñadora de moda, florista, jardinera y directora de orquesta. Cada mujer tiene un solo traba-
+ * -jo, y cada trabajo es ocupado por una sola mujer. Con las siguientes pistas, encontrar el trabajo realizado por cada mujer:
+ * 
+ * (a) Clara es violentamente alérgica a las plantas.
+ * (b) Luisa y la florista comparten el departamento
+ * (c) A María y Luisa les gusta solamente la música rock(d) La jardinera, la diseñadora de modas y Nélida no se conocen entre sí
+ */
+package ejercicios;
+
+import java.util.*;
+
+public class EjercicioDos {
+
+    static final String[] mujeres = {"Clara", "Luisa", "María", "Nélida"};
+    static final String[] trabajos = {"Diseñadora de moda", "Florista", "Jardinera", "Directora de orquesta"};
+    static String[] asignaciones = new String[4];
+    static int contadorSoluciones = 0;
+
+    public static void main(String[] args) {
+        resolverTrabajos(0);
+    }
+
+    static void resolverTrabajos(int indice) {
+        if (indice == 4) {
+            if (esSolucion()) {
+                imprimirSolucion(++contadorSoluciones);
+            }
+            return;
+        }
+
+        for (String trabajo : trabajos) {
+            if (!Arrays.asList(asignaciones).contains(trabajo)) {
+                asignaciones[indice] = trabajo;
+                resolverTrabajos(indice + 1);
+                asignaciones[indice] = null;
+            }
+        }
+    }
+
+    static boolean esSolucion() {
+        // Clara no puede ser florista ni jardinera
+        if (asignaciones[0].equals("Florista") || asignaciones[0].equals("Jardinera")) return false;
+
+        // Luisa no puede ser florista ni directora de orquesta
+        if (asignaciones[1].equals("Florista") || asignaciones[1].equals("Directora de orquesta")) return false;
+
+        // María no puede ser directora de orquesta
+        if (asignaciones[2].equals("Directora de orquesta")) return false;
+
+        // Nelida no puede ser diseñadora de modas ni jardinera
+        if (asignaciones[3].equals("Diseñadora de moda") || asignaciones[3].equals("Jardinera")) return false;
+
+        // Si Luisa es diseñadora de modas, Nelida no puede ser florista
+        if (asignaciones[1].equals("Diseñadora de moda") && asignaciones[3].equals("Florista")) return false;
+
+        return true;
+    }
+
+    static void imprimirSolucion(int numeroCaso) {
+        System.out.println("Opcion #" + numeroCaso + ":");
+        System.out.println("----------------------------");
+        for (int i = 0; i < 4; i++) {
+            System.out.println(mujeres[i] + " trabaja como " + asignaciones[i]);
+        }
+        System.out.println();
+    }
+}
