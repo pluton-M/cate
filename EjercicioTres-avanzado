@@ -1,0 +1,69 @@
+/*
+ * 3) Realizar un programa para resolver el siguiente problema: El Sr. Ido, el químico, tiene seis frascos llenos de líquidos 
+ * coloreados. Hay uno de cada color: rojo, anaranjado, amarillo, verde, azul y violeta. El señor Ido sabe que algunos de esos 
+ * líquidos son tóxicos, pero no recuerda cuales...
+ * Sin embargo, sí recuerda algunos datos. En cada uno de los siguientes pares de frascos hay uno con veneno y otro no:
+ * a) los frascos violeta y azul
+ * b) los frascos rojo y amarillo
+ * c) los frascos azul y anaranjado
+ * 
+ * El Sr. Ido recuerda también que en estos otros pares de frascos hay uno sin veneno:
+ * d) el violeta y el amarillo
+ * e) el rojo y el anaranjado
+ * f) el verde y el azul
+ * ¡Ah! Casi lo olvido, añade el Sr. Ido, el líquido del frasco rojo no es venenoso. ¿Qué frascos tienen veneno?
+ */
+package ejercicios;
+
+import java.util.*;
+
+public class EjercicioTres {
+
+    static final String[] colores = {"Rojo", "Naranja", "Amarillo", "Verde", "Azul", "Violeta"};
+    static boolean[] conVeneno = new boolean[6];
+
+    public static void main(String[] args) {
+        encontrarVeneno(0);
+    }
+
+    static void encontrarVeneno(int indice) {
+        if (indice == 6) {
+            if (cumpleCondiciones()) {
+                imprimirFrascosConVeneno();
+            }
+            return;
+        }
+
+        // Probar si el frasco en el índice "indice" tiene veneno o no
+        conVeneno[indice] = true;
+        encontrarVeneno(indice + 1);
+        conVeneno[indice] = false;
+        encontrarVeneno(indice + 1);
+    }
+
+    static boolean cumpleCondiciones() {
+        // Estos frascos tienen uno con veneno y otro no
+        if (conVeneno[4] == conVeneno[5]) return false; //violeta y azul
+        if (conVeneno[0] == conVeneno[2]) return false; //rojo y amarillo
+        if (conVeneno[4] == conVeneno[1]) return false; //azul y naranja
+
+        // Estos frascos tienen uno sin veneno (aparte del rojo)
+        if (conVeneno[4] && conVeneno[2]) return false; //violeta y el amarillo
+        if (!conVeneno[0] && !conVeneno[1]) return false; //rojo y el naranja        
+        if (!conVeneno[3] && !conVeneno[4]) return false; //verde y el azul
+
+        // El líquido del frasco rojo no es venenoso
+        if (conVeneno[0]) return false;
+
+        return true;
+    }
+
+    static void imprimirFrascosConVeneno() {
+        System.out.println("Los frascos con veneno son:");
+        for (int i = 0; i < 6; i++) {
+            if (conVeneno[i]) {
+                System.out.println(colores[i]);
+            }
+        }
+    }
+}
